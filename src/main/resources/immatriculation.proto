@@ -1,0 +1,49 @@
+syntax ="proto3";
+option java_package="ma.enset.abderrahim_ait_bouna.web.grpc.stub";
+
+message Proprietaire{
+  int64 id=1;
+  string nom=2;
+  string dateNaissance=3;
+  string email=4;
+}
+
+message Vehicule{
+  int64 id=1;
+  string matricule=2;
+  string model=3;
+  int64 puissance_fiscale=4;
+  string marque = 5;
+}
+message GetVehiculeRequest{
+  int64 id = 1;
+}
+message GetVehiculeResponse{
+  Vehicule vehicule = 1;
+}
+
+message GetAllVehiculeRequest{}
+message GetAllVehiculeResponse{
+  repeated Vehicule vehicule = 1;
+}
+
+message SaveVehiculeRequest{
+  int64 id=1;
+  string matricule=2;
+  string model=3;
+  int64 puissance_fiscale=4;
+  string marque = 5;
+}
+
+message SaveVehiculeResponse{
+  Vehicule vehicule = 1;
+}
+
+service VehiculeGrpcService{
+  rpc getVehicule(GetVehiculeRequest) returns (GetVehiculeResponse);
+  rpc getAllVehicules(GetAllVehiculeRequest) returns(GetAllVehiculeResponse);
+  rpc saveVehicule(SaveVehiculeRequest) returns (SaveVehiculeResponse);
+}
+
+
+
