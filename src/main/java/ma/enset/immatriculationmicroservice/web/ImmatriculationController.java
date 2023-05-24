@@ -24,6 +24,11 @@ public class ImmatriculationController {
         return vehiculeRepository.findAll();
     }
 
+    @GetMapping("/vehicules/{id}")
+    public Vehicule getVehiculeById(@PathVariable Long id){
+        return vehiculeRepository.findById(id).get();
+    }
+
     @GetMapping("/proprietaires")
     public List<Proprietaire> getProprietaires(){
         return proprietaireRepository.findAll();
@@ -34,9 +39,9 @@ public class ImmatriculationController {
         return proprietaireRepository.findById(id).get();
     }
 
-    @GetMapping("/vehicules/{id}")
-    public Vehicule getVehiculeById(@PathVariable Long id){
-        return vehiculeRepository.findById(id).get();
+    @GetMapping("/vehicule")
+    public Vehicule getVehiculeByMatricule(@RequestParam String mat){
+        return vehiculeRepository.findVehiculeByMatricule(mat);
     }
 //  ************
     @PostMapping("/proprietaires")
